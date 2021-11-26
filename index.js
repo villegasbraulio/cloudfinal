@@ -13,7 +13,7 @@ app.all('/', (req, res) => {
     console.log(JSON.stringify(req.body.Records[0].s3.bucket.name,null, 2));
 
     var objeto = [
-      { "bucket": req.body.Records[0].s3.bucket.name, "date": req.body.Records[0].eventTime, "key": req.body.Records[0].s3.bucket.name},
+      { "bucket": req.body.Records[0].s3.bucket.name, "date": req.body.Records[0].eventTime, "key": req.body.Records[0].s3.object.key},
     ];
 
 
