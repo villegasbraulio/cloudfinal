@@ -37,16 +37,6 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
-// MongoClient.connect(uri, function(err, db) {
-//   if (err) throw err;
-//   var dbo = db.db("cloudfinal");
-//   dbo.collection("clou").insertOne(objeto, function(err, res) {
-//     if (err) throw err;
-//     console.log("succefull prili");
-//     db.close();
-//   });
-// });
-
 
 
 
