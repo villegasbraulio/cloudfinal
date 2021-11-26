@@ -8,16 +8,24 @@ const uri = "mongodb+srv://prilioo:Braulio140397@cluster0.4xovx.mongodb.net/clou
 
 app.use(express.json())
 app.all('/', (req, res) => {
-    console.log(JSON.stringify(req.body,null, 2));
-    var objeto = (req.body);
+    console.log(JSON.stringify(req.body.Records[0].s3.object.key,null, 2));
+    console.log(JSON.stringify(req.body.Records[0].eventTime,null, 2));
+    console.log(JSON.stringify(req.body.Records[0].s3.bucket.name,null, 2));
+
+    var objeto = [
+      { "bucket": req.body.Records[0].s3.bucket.name, "date": req.body.Records[0].eventTime, "key": req.body.Records[0].s3.bucket.name},
+    ];
+
+
   res.json(req.body)
 
   MongoClient.connect(uri, function(err, db) {
     if (err) throw err;
     var dbo = db.db("cloudfinal");
-    dbo.collection("clou").insertOne(objeto, function(err, res) {
+    
+    dbo.collection("clou").insertMany(objeto, function(err, res) {
       if (err) throw err;
-      console.log("claro prilio");
+      console.log("exito");
       db.close();
     });
   });
